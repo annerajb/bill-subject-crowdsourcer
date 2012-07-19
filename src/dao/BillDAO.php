@@ -8,8 +8,6 @@
 class BillDAO
 {
     /**
-     *
-     * @assert (1,1) == 2
      * @param type $x
      * @param type $y
      * @return type
