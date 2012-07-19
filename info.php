@@ -6,8 +6,8 @@
     </head>
     <body>
         <?php
-        phpinfo();
+        phpinfo();ww
 
         ?>
     </body>
-</html>
+</html> 
