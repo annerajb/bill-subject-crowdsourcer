@@ -23,6 +23,28 @@ class ParameterCheck
 
     }
 
+    public static function checkParamClass( &$param, $paramClass, $paramName )
+    {
+        ParameterCheck::checkParam($param, $paramName);
+
+
+        if( gettype($param) != 'object' )
+        {
+            $msg = "Variable '$paramName' is not an object.";
+            throw new ParameterCheckException($msg);
+        }
+        if( !$param instanceof $paramClass )
+        {
+            $className = get_class($param);
+            $msg = "Variable '$paramName' is not of appropiate type. ";
+            $msg = $msg."Expected: {$paramClass}, Actual: {$className}.";
+            throw new ParameterCheckException($msg);
+        }
+
+        return true;
+
+    }
+
     /**
      * Verifies that the parameter is a non null array and that
      * none of its elements are null.

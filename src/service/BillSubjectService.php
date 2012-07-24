@@ -4,11 +4,11 @@ require_once('src/util/ParameterCheck.php');
 require_once('src/model/ModelCheck.php');
 
 /**
- * Description of BillDAO
+ * Description of BillSubjectService
  *
  * @author Javier L. Matías-Cabrera
  */
-class BillSubjectMongoDAO
+class BillSubjectService
 {
     /**
      *
@@ -18,7 +18,7 @@ class BillSubjectMongoDAO
 
     public function __construct($mongo)
     {
-        ParameterCheck::checkParam($mongo, 'mongo');
+        ParameterCheck::checkParamClass($mongo,'Mongo' , 'mongo');
         $this->mongo = $mongo;
     }
 
@@ -65,7 +65,10 @@ class BillSubjectMongoDAO
     {
     }
 
+    public function addBillSubjectEntry($billId, $subject, $userId)
+    {
 
+    }
 }
 
 ?>

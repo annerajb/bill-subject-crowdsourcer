@@ -50,8 +50,6 @@ class BillyAPI_DAOTest extends TestCaseBase
         $this->fail('Not yet implemented');
     }
 
-
-
 }
 
 ?>
