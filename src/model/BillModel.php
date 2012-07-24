@@ -1,7 +1,7 @@
 <?php
 
 
-require_once('src/model/ParameterCheck.php');
+require_once('src/util/ParameterCheck.php');
 /**
  * Description of BillModel
  *

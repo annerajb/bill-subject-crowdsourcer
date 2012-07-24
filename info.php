@@ -6,8 +6,11 @@
     </head>
     <body>
         <?php
-        phpinfo();ww
+        require_once('src/dao/MongoDatabase.php');
+        $mongo = new Mongo(MongoDatabase::getDatabaseString('crowd','sourcer','localhost','crowdsourcer'));
+        phpinfo();
+
 
         ?>
     </body>
-</html> 
+</html>

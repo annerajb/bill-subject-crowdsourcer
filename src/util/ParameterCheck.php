@@ -14,9 +14,8 @@
  * used for things other than the parameters.
  */
 
-require_once('common/logger.php');
 
-class ParameterCheck extends Object
+class ParameterCheck
 {
     /**
      *

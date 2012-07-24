@@ -10,12 +10,15 @@ require_once 'src/dao/BillDAO.php';
 class BillDAOTest extends PHPUnit_Framework_TestCase
 {
 
+    private $mongoDB;
     /**
      * Sets up the fixture, for example, opens a network connection.
      * This method is called before a test is executed.
      */
     protected function setUp()
     {
+        $this->mongoDB = $mongoDB = array('username' => 'crowd',  'password' => 'sourcer',
+                         'host' => 'localhost', 'databaseName' => 'crowdsourcer');
     }
 
     /**
@@ -24,31 +27,19 @@ class BillDAOTest extends PHPUnit_Framework_TestCase
      */
     protected function tearDown()
     {
-
-    }
-
-    /**
-     * Generated from @assert (1,1) == 2.
-     *
-     * @covers BillDAO::addTwoNumbers
-     */
-    public function testAddTwoNumbers()
-    {
-        $mockMongo = $this->getMock('MongoDatabase');
-        $billDAO = new BillDAO($mockMongo);
-        $this->assertEquals(
-                2, $billDAO->addTwoNumbers(1, 1)
-        );
     }
 
     public function testAddBill()
     {
-        $mockMongo = $this->getMock('Mongo', array('selectDB'));
+
+        $mockMongo = $this->getMock('Mongo', array('selectCollection'));
         $mockMongo->expects($this->once())
-             ->method('selectDB')
-             ->will($this->returnValue(true));
+             ->method('selectCollection')
+             ->will($this->returnValue(true))
+             ->with($this->equalTo('bills'));
 
-
+        $billDAO = new BillDAO($mockMongo);
+        $billDAO->addBill('lol');
     }
 
 }

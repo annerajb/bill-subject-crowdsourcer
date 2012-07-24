@@ -5,13 +5,13 @@
  *
  * @author Javier L. Matías-Cabrera
  */
-class MongoDAO
+class MongoDatabase
 {
-
-   private $mongo;
-   public function __construct($databaseName)
+    public static function getDatabaseString($username, $password,
+                                             $host, $databaseName)
     {
-        $Sthis->mongo = new Mongo($databaseName);
+        $databaseString = "mongodb://{$username}:{$password}@{$host}/{$databaseName}";
+        return $databaseString;
     }
 }
 

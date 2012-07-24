@@ -1,34 +1,32 @@
 <?php
 
-require_once('MongoDatabase.php');
+require_once('src/util/ParameterCheck.php');
+require_once('src/dao/MongoDatabase.php');
 /**
  * Description of BillDAO
  *
  * @author Javier L. Matías-Cabrera
  */
-class BillDAO extends MongoDAO
+class BillDAO extends MongoDatabase
 {
-    private $mongoDatabase;
 
-    public function __construct($_mongoDatabase)
+    private $database;
+    private $connection;
+
+    /**
+     *
+     * @var Mongo
+     */
+    private $mongo;
+
+    public function __construct($mongo)
     {
-        $Sthis->mongoDatabase = $_mongoDatabase;
+        $this->mongo = $mongo;
     }
 
     public function addBill($bill)
     {
-        $connection = $this->mongo->selectDB();
-    }
-
-
-    /**
-     * @param type $x
-     * @param type $y
-     * @return type
-     */
-    public function addTwoNumbers($x, $y)
-    {
-        return $x + $y;
+        $bills = $this->mongo->selectCollection('bills');
     }
 }
 
