@@ -29,10 +29,11 @@ class BillyAPI_DAO
     }
 
 
-    /**
-     *
-     */
-    public function getAllBills()
+    public function getAllUpperChamberBills($state)
+    {
+    }
+
+    public function getAllLowerChamberBills($state)
     {
     }
 }

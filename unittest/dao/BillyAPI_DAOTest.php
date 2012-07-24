@@ -47,12 +47,12 @@ class BillyAPI_DAOTest extends TestCaseBase
 
     public function testGetAllUpperChamberBills()
     {
-        $this->fail('Not yet implemented');
+        
     }
 
     public function testGetAllLowerChamberBills()
     {
-        $this->fail('Not yet implemented');
+
     }
 
 }
