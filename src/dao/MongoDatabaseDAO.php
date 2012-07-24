@@ -33,7 +33,11 @@ class MongoDatabaseDAO
     protected function add($collection, $item)
     {
         return $this->mongoDB->selectCollection($collection)->insert($item);
+    }
 
+    protected function save($collection, $item)
+    {
+        return $this->mongoDB->selectCollection($collection)->insert($item);
     }
 
     protected function find($collection, $query)

@@ -39,12 +39,12 @@ class BillyAPIService extends Object
         return array_slice($bills, $offset,$limit);
     }
 
-    public function findLowerChamberBillsWithoutSubject($state, $offset=0, $limit=25)
+    public function findLowerChamberBillsWithoutSubject($state)
     {
 
     }
 
-    public function findUpperChamberBillsWithoutSubject($state, $offset=0, $limit=25)
+    public function findUpperChamberBillsWithoutSubject($state)
     {
 
     }

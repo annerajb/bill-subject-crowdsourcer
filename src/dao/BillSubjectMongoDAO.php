@@ -20,6 +20,12 @@ class BillSubjectMongoDAO extends MongoDatabaseDAO
         return $this->add("bills", $bill);
     }
 
+    public function saveBill($bill)
+    {
+        BillModel::checkBill($bill);
+        return $this->save("bills", $bill);
+    }
+
     public function updateBill($bill)
     {
         BillModel::checkBill($bill);
