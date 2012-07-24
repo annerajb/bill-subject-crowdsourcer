@@ -45,7 +45,12 @@ class BillyAPI_DAOTest extends TestCaseBase
         $dao = new BillyAPI_DAO('someKey','');
     }
 
-    public function testGetAllBills()
+    public function testGetAllUpperChamberBills()
+    {
+        $this->fail('Not yet implemented');
+    }
+
+    public function testGetAllLowerChamberBills()
     {
         $this->fail('Not yet implemented');
     }

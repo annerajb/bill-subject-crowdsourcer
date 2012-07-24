@@ -19,9 +19,12 @@ class BillyAPIService
         $this->billyDAO = $billyDAO;
     }
 
-    public function findAllBills()
+    public function findAllUpperChamberBills($state)
     {
+    }
 
+    public function findAllLowerChamberBills($state)
+    {
     }
 }
 
