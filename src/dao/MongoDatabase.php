@@ -1,5 +1,6 @@
 <?php
 
+require_once 'src/util/ParameterCheck.php';
 /**
  * Description of MongoDAO
  *
@@ -7,11 +8,19 @@
  */
 class MongoDatabase
 {
-    public static function getDatabaseString($username, $password,
+    public static function createMongoDatabase($username, $password,
                                              $host, $databaseName)
     {
-        $databaseString = "mongodb://{$username}:{$password}@{$host}/{$databaseName}";
-        return $databaseString;
+        ParameterCheck::checkParam($username, 'username');
+        ParameterCheck::checkParam($password, 'password');
+        ParameterCheck::checkParam($host, 'host');
+        ParameterCheck::checkParam($databaseName, 'databaseName');
+
+        $connectionString = "mongodb://{$username}:{$password}@{$host}/{$databaseName}";
+        $mongo = new Mongo($connectionString);
+        ParameterCheck::checkParam($mongo, 'mongo');
+        return $mongo;
+
     }
 }
 

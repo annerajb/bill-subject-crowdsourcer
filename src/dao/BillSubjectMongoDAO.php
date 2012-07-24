@@ -2,12 +2,13 @@
 
 require_once('src/util/ParameterCheck.php');
 require_once('src/model/ModelCheck.php');
+
 /**
  * Description of BillDAO
  *
  * @author Javier L. Matías-Cabrera
  */
-class BillDAO
+class BillSubjectMongoDAO
 {
     /**
      *
@@ -17,12 +18,17 @@ class BillDAO
 
     public function __construct($mongo)
     {
+        ParameterCheck::checkParam($mongo, 'mongo');
         $this->mongo = $mongo;
     }
 
+    /**
+     *
+     * @param type $bill
+     */
     public function addBill($bill)
     {
-        BillModel::checkBill($bill);
+        BillModel::checkNewBill($bill);
         $bills = $this->mongo->selectCollection('bills');
         $bills->insert($bill);
     }
@@ -41,9 +47,6 @@ class BillDAO
 
     public function addUser($user)
     {
-//        BillModel::checkUser($user);
-//        $users = $this->mongo->selectCollection('users');
-//        $users->insert($user);
     }
 
     public function updateUser($user)

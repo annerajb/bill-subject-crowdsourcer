@@ -11,15 +11,23 @@ class BillModel
 {
     public static function checkBill($bill)
     {
-        ParameterCheck::checkParam($bill['subject'],'bill[\'subject\']');
-        ParameterCheck::checkParam($bill['id'],'bill[\'id\']');
+        ParameterCheck::checkBill($bill);
+        ParameterCheck::checkPositiveIntParam($bill['id'],'bill[\'id\']');
+
+    }
+    public static function checkNewBill($bill)
+    {
+        ParameterCheck::checkArrayNotNull($bill, 'bill');
+        ParameterCheck::checkStringParam($bill['subject'],'bill[\'subject\']');
     }
 
     public static function checkUser($user)
     {
-        ParameterCheck::checkParam($user['name'],'user[\'name\']');
-        ParameterCheck::checkParam($user['id'],'user[\'id\']');
-        ParameterCheck::checkParam($user['password'],'user[\'password\']');
+        ParameterCheck::checkArrayNotNull($user, 'user');
+        ParameterCheck::checkStringParam($user['name'],'user[\'name\']');
+        ParameterCheck::checkStringParam($user['id'],'user[\'id\']');
+        ParameterCheck::checkStringParam($user['password'],'user[\'password\']');
+
     }
 
 

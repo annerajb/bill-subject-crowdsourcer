@@ -7,7 +7,7 @@
     <body>
         <?php
         require_once('src/dao/MongoDatabase.php');
-        $mongo = new Mongo(MongoDatabase::getDatabaseString('crowd','sourcer','localhost','crowdsourcer'));
+        $mongo = new Mongo(MongoDatabase::createMongoDatabase('crowd','sourcer','localhost','crowdsourcer'));
         phpinfo();
 
 
