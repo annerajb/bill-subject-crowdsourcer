@@ -1,19 +1,6 @@
 <?php
-/*
-  Copyright (c) 2011 Hewlett-Packard Development Company, LP
-  All Rights Reserved. Unpublished rights reserved under the copyright laws
-  of the United States. The software contained on this media is proprietary
-  to and embodies the confidential technology of  Hewlett-Packard. Possession,
-  use, duplication or dissemination of the software and  media is authorized
-  only pursuant to a valid written license from Hewlett-Packard.
- */
 
-/**
- * @author Javier L. Matías-Cabrera <javier.matias@hp.com>
- * @todo Give this class and methods a more proper name since they can also be
- * used for things other than the parameters.
- */
-
+require_once('ParameterCheckException.php');
 
 class ParameterCheck
 {
@@ -25,12 +12,11 @@ class ParameterCheck
      */
     public static function checkParam( &$param, $paramName )
     {
-        HP_trace("Checking variable $paramName, value: $param", __FUNCTION__, DEBUG3);
 
         if( is_null( $param ) )
         {
             $value = print_r($param,TRUE);
-            throw new Exception("Variable '$paramName' cannot be null. Value: [{$value}] ");
+            throw new ParameterCheckException("Variable '$paramName' cannot be null. Value: [{$value}] ");
         }
 
         return true;
@@ -51,7 +37,7 @@ class ParameterCheck
         if( !is_array( $param ) )
         {
             $paramValue = print_r($param,TRUE);
-            throw new Exception("Variable '$paramName' is not an array. Value: [{$paramValue}]");
+            throw new ParameterCheckException("Variable '$paramName' is not an array. Value: [{$paramValue}]");
         }
 
         foreach( $param as $key => $value )
@@ -59,7 +45,7 @@ class ParameterCheck
             if( is_null( $value ) )
             {
                 $paramValue = print_r($param,TRUE);
-                throw new Exception("Element '$key' inside array '$paramName' cannot be null. Value: [{$paramValue}]");
+                throw new ParameterCheckException("Element '$key' inside array '$paramName' cannot be null. Value: [{$paramValue}]");
             }
         }
 
@@ -79,7 +65,7 @@ class ParameterCheck
         if( empty( $param ) or $param == "null" || $param == "NULL" )
         {
             $value = print_r($param,TRUE);
-            throw new Exception("String variable '$paramName' is empty. Value: [{$value}]");
+            throw new ParameterCheckException("String variable '$paramName' is empty. Value: [{$value}]");
         }
 
         return true;
@@ -92,7 +78,7 @@ class ParameterCheck
      * @param integer $param
      * @param string $paramName
      * @return type
-     * @throws Exception
+     * @throws ParameterCheckException
      *
      */
     public static function checkPositiveIntParam( &$param, $paramName )
@@ -102,13 +88,13 @@ class ParameterCheck
         if( !is_numeric($param) )
         {
             $value = print_r($param,TRUE);
-            throw new Exception("Variable '$paramName' is not an numeric value. Value: [{$value}]");
+            throw new ParameterCheckException("Variable '$paramName' is not an numeric value. Value: [{$value}]");
         }
 
         if( intval($param) < 0  )
         {
             $value = print_r($param,TRUE);
-            throw new Exception("Integer variable '$paramName' is not positive. Value: [{$value}]");
+            throw new ParameterCheckException("Integer variable '$paramName' is not positive. Value: [{$value}]");
 
         }
 
@@ -128,7 +114,7 @@ class ParameterCheck
         if( !is_numeric($param) )
         {
             $value = print_r($param,TRUE);
-            throw new Exception("Variable '$paramName' is not an numeric value. Value: [{$value}]");
+            throw new ParameterCheckException("Variable '$paramName' is not an numeric value. Value: [{$value}]");
         }
 
         return true;
@@ -139,7 +125,7 @@ class ParameterCheck
      * @param type $param
      * @param type $paramName
      * @return type
-     * @throws Exception
+     * @throws ParameterCheckException
      */
     public static function checkTimestampParam( &$param, $paramName )
     {
@@ -150,7 +136,7 @@ class ParameterCheck
         if( !preg_match($regex, $param ) )
         {
             $value = print_r($param,TRUE);
-            throw new Exception("Variable '$paramName' is not a valid timestamp. Value: [{$value}]");
+            throw new ParameterCheckException("Variable '$paramName' is not a valid timestamp. Value: [{$value}]");
         }
 
         return true;

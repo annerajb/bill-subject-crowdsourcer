@@ -31,15 +31,65 @@ class BillDAOTest extends PHPUnit_Framework_TestCase
 
     public function testAddBill()
     {
+        $bill = array('subject' => 'lulz', 'id' => 123);
 
-        $mockMongo = $this->getMock('Mongo', array('selectCollection'));
+        $mockMongoCollection = $this->getMock('MongoCollection',
+                array('insert'));
+        $mockMongo = $this->getMock('Mongo',
+                array('selectCollection'));
+
         $mockMongo->expects($this->once())
              ->method('selectCollection')
-             ->will($this->returnValue(true))
+             ->will($this->returnValue($mockMongoCollection))
              ->with($this->equalTo('bills'));
+        $mockMongoCollection->expects($this->once())
+             ->method('insert')
+             ->will($this->returnValue(true))
+             ->with($this->equalTo($bill));
 
         $billDAO = new BillDAO($mockMongo);
-        $billDAO->addBill('lol');
+        $billDAO->addBill($bill);
+    }
+
+    public function testAddBillMissingSubject()
+    {
+        $bill = array( 'id' => 123);
+
+        $mockMongoCollection = $this->getMock('MongoCollection',
+                array('insert'));
+        $mockMongoCollection->expects($this->never())
+             ->method('insert');
+
+        $mockMongo = $this->getMock('Mongo',
+                array('selectCollection'));
+
+        $mockMongo->expects($this->never())
+             ->method('selectCollection');
+
+        $this->setExpectedException('ParameterCheckException');
+        $billDAO = new BillDAO($mockMongo);
+        $billDAO->addBill($bill);
+    }
+
+
+    public function testAddBillMissingId()
+    {
+        $bill = array( 'subject' => 'lulz');
+    
+        $mockMongoCollection = $this->getMock('MongoCollection',
+                array('insert'));
+        $mockMongo = $this->getMock('Mongo',
+                array('selectCollection'));
+
+       $mockMongo = $this->getMock('Mongo',
+                array('selectCollection'));
+
+        $mockMongo->expects($this->never())
+             ->method('selectCollection');
+
+        $this->setExpectedException('ParameterCheckException');
+        $billDAO = new BillDAO($mockMongo);
+        $billDAO->addBill($bill);
     }
 
 }

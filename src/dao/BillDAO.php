@@ -1,18 +1,14 @@
 <?php
 
 require_once('src/util/ParameterCheck.php');
-require_once('src/dao/MongoDatabase.php');
+require_once('src/model/BillModel.php');
 /**
  * Description of BillDAO
  *
  * @author Javier L. Matías-Cabrera
  */
-class BillDAO extends MongoDatabase
+class BillDAO
 {
-
-    private $database;
-    private $connection;
-
     /**
      *
      * @var Mongo
@@ -26,7 +22,9 @@ class BillDAO extends MongoDatabase
 
     public function addBill($bill)
     {
+        BillModel::check($bill);
         $bills = $this->mongo->selectCollection('bills');
+        $bills->insert($bill);
     }
 }
 

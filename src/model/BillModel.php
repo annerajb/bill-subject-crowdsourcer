@@ -13,12 +13,6 @@ class BillModel
     {
         ParameterCheck::checkParam($bill['subject'],'bill[\'subject\']');
         ParameterCheck::checkParam($bill['id'],'bill[\'id\']');
-
-        ParameterCheck::checkArrayNotNull($bill, 'bill');
-
-
-
-
     }
 }
 
