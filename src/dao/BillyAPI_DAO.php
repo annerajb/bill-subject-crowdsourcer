@@ -1,12 +1,13 @@
 <?php
 
 require_once 'src/util/ParameterCheck.php';
+require_once 'src/util/Object.php';
 /**
  * Description of BillyDAO
  *
  * @author Javier L. Matías-Cabrera
  */
-class BillyAPI_DAO
+class BillyAPI_DAO extends Object
 {
     /**
      *

@@ -12,20 +12,33 @@
 </head>
 
 <body>
-    
-    <h2>Upper Chamber</h2>
+
+    <h2>Upper Chamber: {$upperBills|@count} bills</h3>
     {foreach from=$upperBills item="bill"  }
 
-        <p> <span>{$bill.id} - {$bill.title}</span>
-        </p>
+        <div class="bill">
+            <p> <span class="bold">ID:</span> <span>{$bill.id}</span>
+            </p>
+            <p> <span class="bold">Subject:</span> <span>{$bill.subject}</span>
+            </p>
+            <p> <span class="bold">Title:</span> <span>{$bill.title}</span>
+            </p>
+        </div>
+
 
     {/foreach}
 
-    <h2>Lower Chamber</h2>
+    <h2>Lower Chamber: {$lowerBills|@count} bills</h3>
     {foreach from=$lowerBills item="bill"  }
 
-        <p> <span>{$bill.id} - {$bill.title}</span>
-        </p>
+        <div class="bill">
+            <p> <span class="bold">ID:</span> <span>{$bill.id}</span>
+            </p>
+            <p> <span class="bold">Subject:</span> <span>{$bill.subject}</span>
+            </p>
+            <p> <span class="bold">Title:</span> <span>{$bill.title}</span>
+            </p>
+        </div>
 
     {/foreach}
 

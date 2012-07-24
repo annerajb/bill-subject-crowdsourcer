@@ -3,3 +3,7 @@
 /PHPUnit/
 /view/templates_c/
 /config/config.ini
+/config/ProductionConfig.ini
+/config/TestingConfig.ini
+/config/testing.ini
+/config/production.ini

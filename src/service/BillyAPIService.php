@@ -3,6 +3,7 @@
 require_once('src/util/ParameterCheck.php');
 require_once('src/model/ModelCheck.php');
 require_once('src/dao/BillyAPI_DAO.php');
+require_once 'src/util/Object.php';
 
 
 /**
@@ -10,7 +11,7 @@ require_once('src/dao/BillyAPI_DAO.php');
  *
  * @author Javier L. Matías-Cabrera
  */
-class BillyAPIService
+class BillyAPIService extends Object
 {
     /**
      *
@@ -36,6 +37,16 @@ class BillyAPIService
         ParameterCheck::checkParam($state, 'state');
         $bills = $this->billyDAO->getAllLowerChamberBills($state);
         return array_slice($bills, $offset,$limit);
+    }
+
+    public function findLowerChamberBillsWithoutSubject($state, $offset=0, $limit=25)
+    {
+
+    }
+
+    public function findUpperChamberBillsWithoutSubject($state, $offset=0, $limit=25)
+    {
+
     }
 }
 

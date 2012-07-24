@@ -1,0 +1,31 @@
+/*
+    Document   : main
+    Created on : Jul 24, 2012, 8:50:23 AM
+    Author     : matiasca
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+root {
+    display: block;
+}
+
+.bill > p
+{
+    margin-top: 0px;
+    margin-bottom: 5px;
+
+}
+
+div.bill
+{
+    margin-top: 1.5em;
+    margin-bottom: 1.5em;
+
+}
+
+span.bold
+{
+    font-weight: bold;
+}
+

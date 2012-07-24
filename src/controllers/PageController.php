@@ -6,7 +6,7 @@ require_once 'Smarty.class.php';
 
 
 
-abstract class Page extends Object
+abstract class PageController extends Object
 {
 
     /**
@@ -23,14 +23,16 @@ abstract class Page extends Object
 
     private $currentDir;
 
+    protected $config;
+
     public function __construct($view)
     {
         $this->currentDir = dirname(__FILE__);
         $this->log = new KLogger ( $this->currentDir.'/../../log/bill-subject.log' );
+        $this->config = getAppConfig();
 
         $this->view = $this->currentDir."/../../view/templates/{$view}";
         $this->smarty = new Smarty();
-
         $this->smarty->compile_dir = $smarty->compile_dir = $this->currentDir.'/../../view/templates_c';
 
     }
@@ -74,6 +76,11 @@ abstract class Page extends Object
     public function AddScriptText($text)
     {
         $this->scripts[] = "<script type=\"text/javascript\">{$text}</script>\n";
+    }
+
+    public function AddCSS($src)
+    {
+        $this->scripts[] = "<link rel=\"stylesheet\" type=\"text/css\" href=\"{$src}\" />\n";
     }
 
 
