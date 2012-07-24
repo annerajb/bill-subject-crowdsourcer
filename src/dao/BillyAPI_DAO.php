@@ -23,8 +23,8 @@ class BillyAPI_DAO extends Object
 
     public function __construct($url, $key)
     {
-        ParameterCheck::checkStringParam($url,'url');
-        ParameterCheck::checkStringParam($key,'key');
+        ParamCheck::checkStringParam($url,'url');
+        ParamCheck::checkStringParam($key,'key');
         $this->key = $key;
         $this->url = $url;
     }

@@ -22,26 +22,17 @@ class BillSubjectMongoDAOTest extends TestCaseBase
     {
     }
 
-    public function testConstructorBad1()
+    public function testConstructorBad()
     {
         $this->setExpectedException('ParameterCheckException');
         $nothing = 'string';
-        $dao = new BillSubjectService($nothing);
-
-    }
-
-    public function testConstructorBad2()
-    {
-        $this->setExpectedException('ParameterCheckException');
-        $nothing = NULL;
-        $dao = new BillSubjectService($nothing);
+        $dao = new BillSubjectMongoDAO('string',null,null,null);
 
     }
 
     public function testConnectToDB()
     {
         $mongo = new BillSubjectMongoDAO("crowd", "source","localhost", "billsubject");
-
     }
 
     public function testConnectToDBBad()

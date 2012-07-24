@@ -9,24 +9,24 @@ require_once('src/util/ParameterCheck.php');
  */
 class BillModel
 {
-    public static function checkBill($bill)
+    public static function checkBillNotNull($bill)
     {
         ParameterCheck::checkBill($bill);
-        ParameterCheck::checkPositiveIntParam($bill['id'],'bill[\'id\']');
+        ParameterCheck::checkArrayNotNull($bill, 'bill');
 
     }
-    public static function checkNewBill($bill)
+    public static function checkill($bill)
     {
-        ParameterCheck::checkArrayNotNull($bill, 'bill');
         ParameterCheck::checkStringParam($bill['subject'],'bill[\'subject\']');
+        ParameterCheck::checkStringParam($bill['title'],'bill[\'title\']');
     }
 
     public static function checkUser($user)
     {
-        ParameterCheck::checkArrayNotNull($user, 'user');
-        ParameterCheck::checkStringParam($user['name'],'user[\'name\']');
-        ParameterCheck::checkStringParam($user['id'],'user[\'id\']');
-        ParameterCheck::checkStringParam($user['password'],'user[\'password\']');
+        ParamCheck::checkArrayNotNull($user, 'user');
+        ParamCheck::checkStringParam($user['name'],'user[\'name\']');
+        ParamCheck::checkStringParam($user['id'],'user[\'id\']');
+        ParamCheck::checkStringParam($user['password'],'user[\'password\']');
 
     }
 

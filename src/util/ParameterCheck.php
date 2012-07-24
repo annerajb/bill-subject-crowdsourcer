@@ -2,7 +2,7 @@
 
 require_once('ParameterCheckException.php');
 
-class ParameterCheck
+class ParamCheck
 {
     /**
      *
@@ -25,7 +25,7 @@ class ParameterCheck
 
     public static function checkParamClass( &$param, $paramClass, $paramName )
     {
-        ParameterCheck::checkParam($param, $paramName);
+        ParamCheck::checkParam($param, $paramName);
 
 
         if( gettype($param) != 'object' )
@@ -54,7 +54,7 @@ class ParameterCheck
      */
     public static function checkArrayNotNull( &$param, $paramName )
     {
-        ParameterCheck::checkParam($param, $paramName);
+        ParamCheck::checkParam($param, $paramName);
 
         if( !is_array( $param ) )
         {
@@ -82,7 +82,7 @@ class ParameterCheck
      */
     public static function checkStringParam( &$param, $paramName )
     {
-        ParameterCheck::checkParam($param, $paramName);
+        ParamCheck::checkParam($param, $paramName);
 
         if( empty( $param ) or $param == "null" || $param == "NULL" )
         {
@@ -105,7 +105,7 @@ class ParameterCheck
      */
     public static function checkPositiveIntParam( &$param, $paramName )
     {
-        ParameterCheck::checkParam($param, $paramName);
+        ParamCheck::checkParam($param, $paramName);
 
         if( !is_numeric($param) )
         {
@@ -131,7 +131,7 @@ class ParameterCheck
      */
     public static function checkIntParam( &$param, $paramName )
     {
-        ParameterCheck::checkParam($param, $paramName);
+        ParamCheck::checkParam($param, $paramName);
 
         if( !is_numeric($param) )
         {
@@ -151,7 +151,7 @@ class ParameterCheck
      */
     public static function checkTimestampParam( &$param, $paramName )
     {
-        ParameterCheck::checkParam($param, $paramName);
+        ParamCheck::checkParam($param, $paramName);
         $param = trim($param);
 
         $regex = "/(^\d{4}-\d{2}-\d{2}\s+\d{2}:\d{2}(:\d{2}|)$)/";

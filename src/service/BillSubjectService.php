@@ -19,11 +19,11 @@ class BillSubjectService extends Object
 
     public function __construct($mongo)
     {
-        ParameterCheck::checkParamClass($mongo,'BillSubjectMongoDAO' , 'mongo');
+        ParamCheck::checkParamClass($mongo,'BillSubjectMongoDatabaseDAO' , 'mongo');
         $this->mongo = $mongo;
     }
 
-    
+
 }
 
 ?>

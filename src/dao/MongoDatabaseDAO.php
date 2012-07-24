@@ -2,32 +2,37 @@
 
 require_once 'src/util/ParameterCheck.php';
 /**
- * Description of MongoDAO
+ * Description of MongoDatabaseDAO
  *
  * @author Javier L. Matías-Cabrera
  */
-class MongoDAO
+class MongoDatabaseDAO
 {
     protected $mongoDB;
 
     public function __construct($username, $password,
                                   $host, $databaseName)
     {
-        ParameterCheck::checkParam($username, 'username');
-        ParameterCheck::checkParam($password, 'password');
-        ParameterCheck::checkParam($host, 'host');
-        ParameterCheck::checkParam($databaseName, 'databaseName');
+        ParamCheck::checkParam($username, 'username');
+        ParamCheck::checkParam($password, 'password');
+        ParamCheck::checkParam($host, 'host');
+        ParamCheck::checkParam($databaseName, 'databaseName');
 
         $connectionString = "mongodb://{$username}:{$password}@{$host}/{$databaseName}";
         $mongo = new Mongo($connectionString);
         $mongoDB = $mongo->selectDB($databaseName);
-        ParameterCheck::checkParam($mongoDB, 'mongoDB');
+        ParamCheck::checkParam($mongoDB, 'mongoDB');
         $this->mongoDB = $mongoDB;
+    }
+
+    protected function update($collection, $item)
+    {
+        return $this->mongoDB->selectCollection($collection)->update($item);
     }
 
     protected function add($collection, $item)
     {
-        $this->mongoDB->selectCollection($collection)->insert($item);
+        return $this->mongoDB->selectCollection($collection)->insert($item);
 
     }
 

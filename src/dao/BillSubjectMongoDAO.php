@@ -1,13 +1,14 @@
 <?php
 
-require_once 'MongoDAO.php';
+require_once 'MongoDatabaseDAO.php';
+require_once 'src/model/ModelCheck.php';
 
 /**
- * Description of BillSubjectMongoDAO
+ * Description of BillSubjectMongoDatabaseDAO
  *
  * @author Javier L. Matías-Cabrera
  */
-class BillSubjectMongoDAO extends MongoDAO
+class BillSubjectMongoDAO extends MongoDatabaseDAO
 {
     /**
      *
@@ -15,25 +16,27 @@ class BillSubjectMongoDAO extends MongoDAO
      */
     public function addBill($bill)
     {
-        BillModel::checkNewBill($bill);
-        $this->add("bills", $bill);
+        BillModel::checkBill($bill);
+        return $this->add("bills", $bill);
     }
 
     public function updateBill($bill)
     {
-
+        BillModel::checkBill($bill);
+        return $this->update("bills", $bill);
     }
 
     public function deleteBill($bill)
     {
+        ParamCheck::checkStringParam($bill, 'bill');
         $bills = $this->mongoDB->selectCollection("bills");
-        $bills->remove($bill);
+        return $bills->remove($bill);
     }
 
     public function deleteAllBills()
     {
         $bills = $this->mongoDB->selectCollection("bills");
-        $bills->remove();
+        return $bills->remove();
     }
 
     public function getBills()
@@ -46,11 +49,22 @@ class BillSubjectMongoDAO extends MongoDAO
 
     public function findBillsBySubject($subject)
     {
+        ParamCheck::checkStringParam($subject, 'subject');
         $query = array('subject' => $subject);
         $cursor = $this->mongoDB->selectCollection("bills")->find($query);
         $result = $this->cursorToArray($cursor);
         return $result;
     }
+
+    public function findBillsWithoutSubject()
+    {
+        $query = array('subject' => NULL );
+        $cursor = $this->mongoDB->selectCollection("bills")->find($query);
+        $result = $this->cursorToArray($cursor);
+        return $result;
+
+    }
+
 
     public function addUser($user)
     {
@@ -61,10 +75,6 @@ class BillSubjectMongoDAO extends MongoDAO
     }
 
     public function removeUser($user)
-    {
-    }
-
-    public function findUserById($userId)
     {
     }
 
